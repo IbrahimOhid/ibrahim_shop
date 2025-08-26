@@ -91,7 +91,7 @@ const products = [
     id: 9,
     name: "Loose Fit Bermuda Shorts",
     cover: "loose-fit-bermuda-shorts.png",
-    rating: 4.5,
+    rating: 4,
     max_rating: 5,
     stock: 10,
     price: 80,

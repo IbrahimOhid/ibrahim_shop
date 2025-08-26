@@ -5,6 +5,6 @@ export const getImgUrl = (name)=>{
 
 export const getRating = ()=>{
     return (
-        <span>★</span>
+        '★'
     )
 }

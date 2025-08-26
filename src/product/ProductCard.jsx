@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { getImgUrl } from "../utility/utilities";
 import Rating from "./Rating";
+import { NewProduct } from "../context";
 
 const ProductCard = ({ products }) => {
+  const {cartData, setCartData} = useContext(NewProduct);
+
+  const handleAddToCart = (product)=>{
+    const findProduct = cartData.find((item)=> item.id === product.id);
+    if(!findProduct){
+      setCartData([...cartData, product])
+    }else{
+      alert('Product Already Added')
+    }
+   
+  }
   return (
     <div>
       <div className="product-grid">
@@ -39,7 +51,7 @@ const ProductCard = ({ products }) => {
                     `$${product.discounted_price}`}
                 </p>
               </div>
-              <button className="disabled:bg-gray-700 disabled:text-gray-400 disabled:cursor-not-allowed w-full mt-2 bg-gray-800 py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all active:bg-gray-900">
+              <button onClick={()=> handleAddToCart(product)} className="disabled:bg-gray-700 disabled:text-gray-400 cursor-pointer disabled:cursor-not-allowed w-full mt-2 bg-gray-800 py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all active:bg-gray-900">
                 Add to Cart
               </button>
             </div>

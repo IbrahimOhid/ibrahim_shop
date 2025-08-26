@@ -1,11 +1,12 @@
 import React from "react";
+import { getRating } from "../utility/utilities";
 
 const Rating = ({ value }) => {
-  const stars = Array(value).fill(<span>★</span>);
+  const stars = Array(value).fill(getRating());
   return (
-    <div>
+    <div className="flex text-yellow-400">
       {stars.map((star, index) => (
-        <div key={index} className="flex text-yellow-400">
+        <div key={index} >
           {star}
         </div>
       ))}
