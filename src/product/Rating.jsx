@@ -1,17 +1,15 @@
 import React from "react";
-import { getRating } from "../utility/utilities";
 
 const Rating = ({ value }) => {
-  const stars = Array(value).fill(getRating());
-  return (
-    <div className="flex text-yellow-400">
-      {stars.map((star, index) => (
-        <div key={index} >
-          {star}
-        </div>
-      ))}
-    </div>
-  );
+  const stars = [];
+  for (let i = 0; i < 5; i++) {
+    stars.push(
+      <span key={i} className={i < value ? "text-yellow-400" : "text-gray-300"}>
+        ★
+      </span>
+    );
+  }
+  return <div>{stars}</div>;
 };
 
 export default Rating;

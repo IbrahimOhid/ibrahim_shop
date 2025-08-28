@@ -7,6 +7,7 @@ const products = [
     max_rating: 5,
     stock: 212,
     price: 145,
+    color: 'Green',
     discounted_price: null,
     in_cart: true,
   },

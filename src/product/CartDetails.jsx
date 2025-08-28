@@ -24,7 +24,7 @@ const CartDetails = () => {
                   <h3 className="font-medium">{product.name}</h3>
                   <span className="text-red-500 text-sm">×</span>
                 </div>
-                <p className="text-sm text-gray-500">Size: Large</p>
+                <p className="text-sm text-gray-500">Size: {product.color}</p>
                 <p className="text-sm text-gray-500">Color: White</p>
                 <div className="flex justify-between items-center mt-2">
                   <p className="font-bold">${product.price}</p>
