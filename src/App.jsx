@@ -6,17 +6,19 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Newsletter from "./Newsletter";
 import ProductList from "./product/ProductList";
+import { ToastContainer} from 'react-toastify';
 
 function App() {
-  const [cartData, setCartData] = useState([])
+  const [cartData, setCartData] = useState([]);
   return (
     <>
-      <NewProduct.Provider value={{cartData, setCartData}}>
+      <NewProduct.Provider value={{ cartData, setCartData }}>
         <Announcement />
         <Header />
         <ProductList />
         <Newsletter />
         <Footer />
+        <ToastContainer/>
       </NewProduct.Provider>
     </>
   );
