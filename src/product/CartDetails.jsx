@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
-import { NewProduct } from "../context";
+import { IncDecItem, NewProduct } from "../context";
 import { getImgUrl } from "../utility/utilities";
 
 const CartDetails = () => {
   const { cartData, setCartData } = useContext(NewProduct);
+  const { incrProduct, setIncrProduct } = useContext(IncDecItem);
+
+  const handleIncDecItem = (IncDecItem) => {
+    const newIncDecItem = cartData.some((item)=> item.id === IncDecItem)
+    setIncrProduct(!newIncDecItem ? incrProduct + 1 : incrProduct)
+  };
   return (
     <div className="lg:col-span-1">
       <div className="bg-white rounded-lg p-6 border border-gray-200">
         <h2 className="text-2xl font-bold mb-6">YOUR CART</h2>
-        {/* Cart Item 1 */}
+        {/* Cart Item */}
         {cartData.length === 0 ? (
           <div>
             <h1 className="text-red-500 text-center mb-5 font-semibold text-2xl">
@@ -44,8 +50,11 @@ const CartDetails = () => {
                       <button className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center">
                         −
                       </button>
-                      <span className="text-sm">1</span>
-                      <button className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center">
+                      <span className="text-sm">{incrProduct}</span>
+                      <button
+                        onClick={() => handleIncDecItem(product.id)}
+                        className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
+                      >
                         +
                       </button>
                     </div>

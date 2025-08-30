@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { getImgUrl } from "../utility/utilities";
 import Rating from "./Rating";
-import { NewProduct } from "../context";
+import { IncDecItem, NewProduct } from "../context";
 import { toast } from "react-toastify";
 
 const ProductCard = ({ products }) => {
   const { cartData, setCartData } = useContext(NewProduct);
-  // const [toggleAddCartBtn, setToggleAddCartBtn] = useState(true);
+  const { incrProduct, setIncrProduct } = useContext(IncDecItem);
 
   const handleAddToCart = (product) => {
     const addProduct = cartData.find((item) => item.id === product.id);
@@ -18,20 +18,20 @@ const ProductCard = ({ products }) => {
         autoClose: 2000,
       });
     } else {
-      // const removeProduct = cartData.filter((item)=> item.id !== product.id);
-      // setCartData(removeProduct)
       toast.warn("Already Product Added", {
         position: "top-center",
         autoClose: 2000,
       });
     }
   };
+
   return (
     <div>
       <div className="product-grid">
         {/* Product */}
         {products.map((product) => {
-          const isInCart = cartData.some((item) => item.id === product.id);
+          const isInCart = cartData.find((item) => item.id === product.id);
+
           return (
             <div
               key={product.id}
@@ -54,7 +54,8 @@ const ProductCard = ({ products }) => {
                     </span>
                   </div>
                   <span className="text-xs text-gray-700">
-                    ({product.stock} pcs left)
+                    ({!isInCart ? product.stock : product.stock - incrProduct}{" "}
+                    pcs left)
                   </span>
                 </div>
                 <div className="flex items-center">
@@ -66,7 +67,8 @@ const ProductCard = ({ products }) => {
                 </div>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className={`${isInCart ? 'bg-red-800': 'bg-gray-800'} cursor-pointer disabled:cursor-not-allowed w-full mt-2  py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all `}
+                  className={`${isInCart ? "bg-red-800" : "bg-gray-800"} 
+                     cursor-pointer  w-full mt-2  py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all`}
                 >
                   {isInCart ? "Remove from Cart" : "Add to Cart"}
                 </button>
