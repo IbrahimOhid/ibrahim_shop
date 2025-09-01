@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 const ProductCard = ({ products }) => {
   const { cartData, setCartData } = useContext(NewProduct);
-  const { incrProduct, setIncrProduct } = useContext(IncDecItem);
 
   const handleAddToCart = (product) => {
     const addProduct = cartData.find((item) => item.id === product.id);
@@ -54,7 +53,7 @@ const ProductCard = ({ products }) => {
                     </span>
                   </div>
                   <span className="text-xs text-gray-700">
-                    ({!isInCart ? product.stock : product.stock - incrProduct}{" "}
+                    ({!isInCart ? product.stock : product.stock }{" "}
                     pcs left)
                   </span>
                 </div>

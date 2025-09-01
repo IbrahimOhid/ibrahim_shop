@@ -121,3 +121,17 @@ const products = [
 export const getProduct = () => {
   return products;
 };
+
+const cartProduct = [
+  {
+    name: "",
+    size: "",
+    color: "",
+    price: '',
+    quantity: 0,
+  },
+];
+
+export const getCartProduct = ()=>{
+  return cartProduct;
+}

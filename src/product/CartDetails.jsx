@@ -4,11 +4,10 @@ import { getImgUrl } from "../utility/utilities";
 
 const CartDetails = () => {
   const { cartData, setCartData } = useContext(NewProduct);
-  const { incrProduct, setIncrProduct } = useContext(IncDecItem);
 
-  const handleIncDecItem = (IncDecItem) => {
-    const newIncDecItem = cartData.some((item)=> item.id === IncDecItem)
-    setIncrProduct(!newIncDecItem ? incrProduct + 1 : incrProduct)
+  const handleIncDecItem = () => {
+      
+    
   };
   return (
     <div className="lg:col-span-1">
@@ -16,7 +15,7 @@ const CartDetails = () => {
         <h2 className="text-2xl font-bold mb-6">YOUR CART</h2>
         {/* Cart Item */}
         {cartData.length === 0 ? (
-          <div>
+          <div className="border border-gray-400 py-5 rounded-xl">
             <h1 className="text-red-500 text-center mb-5 font-semibold text-2xl">
               Your Cart is Empty !
             </h1>
@@ -50,9 +49,9 @@ const CartDetails = () => {
                       <button className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center">
                         −
                       </button>
-                      <span className="text-sm">{incrProduct}</span>
+                      <span className="text-sm">0</span>
                       <button
-                        onClick={() => handleIncDecItem(product.id)}
+                        onClick={() => handleIncDecItem(product)}
                         className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
                       >
                         +
