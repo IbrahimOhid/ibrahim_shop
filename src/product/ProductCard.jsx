@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { getImgUrl } from "../utility/utilities";
 import Rating from "./Rating";
-import { IncDecItem, NewProduct } from "../context";
+import { NewProduct } from "../context";
 import { toast } from "react-toastify";
 
 const ProductCard = ({ products }) => {
@@ -53,7 +53,7 @@ const ProductCard = ({ products }) => {
                     </span>
                   </div>
                   <span className="text-xs text-gray-700">
-                    ({!isInCart ? product.stock : product.stock }{" "}
+                    ({!isInCart ? product.stock : product.stock - 1 }{" "}
                     pcs left)
                   </span>
                 </div>

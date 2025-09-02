@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { IncDecItem, NewProduct } from "../context";
 import { getImgUrl } from "../utility/utilities";
 
 const CartDetails = () => {
   const { cartData, setCartData } = useContext(NewProduct);
 
-  const handleIncDecItem = () => {
-      
-    
+  const handleIncDecItem = (productId) => {
+    setCartData((prevCartData) =>
+      prevCartData.map((item) =>
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
   };
   return (
     <div className="lg:col-span-1">
@@ -49,9 +52,9 @@ const CartDetails = () => {
                       <button className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center">
                         −
                       </button>
-                      <span className="text-sm">0</span>
+                      <span className="text-sm">{product.quantity}</span>
                       <button
-                        onClick={() => handleIncDecItem(product)}
+                        onClick={() => handleIncDecItem(product.id)}
                         className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
                       >
                         +

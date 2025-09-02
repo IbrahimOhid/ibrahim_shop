@@ -11,6 +11,7 @@ const products = [
     color: "Green",
     discounted_price: null,
     in_cart: true,
+    quantity: 1
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const products = [
     color: "Soft Blue",
     discounted_price: 260,
     in_cart: false,
+    quantity: 1
   },
   {
     id: 3,
@@ -37,6 +39,7 @@ const products = [
     color: "Red",
     discounted_price: 232,
     in_cart: false,
+    quantity: 1
   },
   {
     id: 4,
@@ -50,6 +53,7 @@ const products = [
     color: "Orange",
     discounted_price: null,
     in_cart: false,
+    quantity: 1
   },
   {
     id: 5,
@@ -63,6 +67,7 @@ const products = [
     color: "Orange",
     discounted_price: null,
     in_cart: false,
+    quantity: 1
   },
   {
     id: 6,
@@ -76,6 +81,7 @@ const products = [
     color: "Denim",
     discounted_price: null,
     in_cart: false,
+    quantity: 1
   },
   {
     id: 7,
@@ -89,6 +95,7 @@ const products = [
     color: "Black",
     discounted_price: 160,
     in_cart: false,
+    quantity: 1
   },
   {
     id: 8,
@@ -102,6 +109,7 @@ const products = [
     color: "White",
     discounted_price: 160,
     in_cart: false,
+    quantity: 1
   },
   {
     id: 9,
@@ -115,6 +123,7 @@ const products = [
     color: "Magenta",
     discounted_price: null,
     in_cart: false,
+    quantity: 1
   },
 ];
 
@@ -128,7 +137,7 @@ const cartProduct = [
     size: "",
     color: "",
     price: '',
-    quantity: 0,
+    quantity: 1,
   },
 ];
 
