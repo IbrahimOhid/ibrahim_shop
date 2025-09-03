@@ -23,6 +23,7 @@ const ProductCard = ({ products }) => {
       });
     }
   };
+  
 
   return (
     <div>
@@ -52,8 +53,8 @@ const ProductCard = ({ products }) => {
                       {product.rating}/{product.max_rating}
                     </span>
                   </div>
-                  <span className="text-xs text-gray-700">
-                    ({!isInCart ? product.stock : product.stock - 1 }{" "}
+                  <span onChange={()=> setCartData((preStockData)=> preStockData.map((item)=> item.id === product.id ? {...item, stock:item.stock-1}: item))} className="text-xs text-gray-700">
+                    (12
                     pcs left)
                   </span>
                 </div>

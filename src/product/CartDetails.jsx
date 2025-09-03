@@ -1,17 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { IncDecItem, NewProduct } from "../context";
 import { getImgUrl } from "../utility/utilities";
 
 const CartDetails = () => {
   const { cartData, setCartData } = useContext(NewProduct);
 
-  const handleIncDecItem = (productId) => {
+  const handleIncBtn = (productId) => {
     setCartData((prevCartData) =>
       prevCartData.map((item) =>
         item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
+
+  const handleDecBtn = (productId)=>{
+    setCartData((prevCartData)=> prevCartData.map((item)=> item.id === productId && item.quantity > 0 ? {...item, quantity: item.quantity - 1}: item))
+  }
+
   return (
     <div className="lg:col-span-1">
       <div className="bg-white rounded-lg p-6 border border-gray-200">
@@ -49,12 +54,12 @@ const CartDetails = () => {
                   <div className="flex justify-between items-center mt-2">
                     <p className="font-bold">${product.price}</p>
                     <div className="flex items-center space-x-2">
-                      <button className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center">
+                      <button onClick={()=> handleDecBtn(product.id)} className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer">
                         −
                       </button>
                       <span className="text-sm">{product.quantity}</span>
                       <button
-                        onClick={() => handleIncDecItem(product.id)}
+                        onClick={() => handleIncBtn(product.id)}
                         className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
                       >
                         +
