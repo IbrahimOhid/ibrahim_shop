@@ -53,8 +53,8 @@ const ProductCard = ({ products }) => {
                       {product.rating}/{product.max_rating}
                     </span>
                   </div>
-                  <span onChange={()=> setCartData((preStockData)=> preStockData.map((item)=> item.id === product.id ? {...item, stock:item.stock-1}: item))} className="text-xs text-gray-700">
-                    (12
+                  <span className="text-xs text-gray-700">
+                    ({product.stock}
                     pcs left)
                   </span>
                 </div>

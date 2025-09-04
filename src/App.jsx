@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Announcement from "./Announcement";
 import "./App.css";
-import { IncDecItem, NewProduct } from "./context";
+import { NewProduct } from "./context";
 import Footer from "./Footer";
 import Header from "./Header";
 import Newsletter from "./Newsletter";
@@ -15,8 +15,7 @@ function App() {
       <NewProduct.Provider value={{ cartData, setCartData }}>
         <Announcement />
         <Header />
-        
-          <ProductList />
+        <ProductList />
         <Newsletter />
         <Footer />
         <ToastContainer />

@@ -4,18 +4,30 @@ import { getImgUrl } from "../utility/utilities";
 
 const CartDetails = () => {
   const { cartData, setCartData } = useContext(NewProduct);
-
+  // Handle Increment Function
   const handleIncBtn = (productId) => {
     setCartData((prevCartData) =>
       prevCartData.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+        item.id === productId ? { ...item, quantity: item.quantity + 1, stock:item.stock-1 } : item
       )
     );
   };
-
-  const handleDecBtn = (productId)=>{
-    setCartData((prevCartData)=> prevCartData.map((item)=> item.id === productId && item.quantity > 0 ? {...item, quantity: item.quantity - 1}: item))
-  }
+  // Handle Decrement Function
+  const handleDecBtn = (productId) => {
+    setCartData((prevCartData) =>
+      prevCartData.map((item) =>
+        item.id === productId && item.quantity > 0
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+  // Handle Remove Cart Function
+  const handleRemoveCart = (productId) => {
+    setCartData((prevCartData) =>
+      prevCartData.filter((item) => item.id !== productId)
+    );
+  };
 
   return (
     <div className="lg:col-span-1">
@@ -45,7 +57,12 @@ const CartDetails = () => {
                 <div className="flex-grow">
                   <div className="flex justify-between">
                     <h3 className="font-medium">{product.name}</h3>
-                    <span className="text-red-500 text-sm">×</span>
+                    <button
+                      onClick={() => handleRemoveCart(product.id)}
+                      className="text-red-500 text-sm cursor-pointer"
+                    >
+                      ×
+                    </button>
                   </div>
                   <p className="text-sm text-gray-500">Size: {product.size}</p>
                   <p className="text-sm text-gray-500">
@@ -54,7 +71,10 @@ const CartDetails = () => {
                   <div className="flex justify-between items-center mt-2">
                     <p className="font-bold">${product.price}</p>
                     <div className="flex items-center space-x-2">
-                      <button onClick={()=> handleDecBtn(product.id)} className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer">
+                      <button
+                        onClick={() => handleDecBtn(product.id)}
+                        className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
+                      >
                         −
                       </button>
                       <span className="text-sm">{product.quantity}</span>
