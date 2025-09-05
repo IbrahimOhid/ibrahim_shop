@@ -8,7 +8,7 @@ const CartDetails = () => {
   const handleIncBtn = (productId) => {
     setCartData((prevCartData) =>
       prevCartData.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1, stock:item.stock-1 } : item
+        item.id === productId ? { ...item, quantity: item.quantity + 1} : item
       )
     );
   };

@@ -5,11 +5,11 @@ const products = [
     cover: "gradient-graphic-tshirt.png",
     rating: 3,
     max_rating: 5,
-    stock: 13,
+    stock: 15,
     price: 145,
     size: "L",
     color: "Green",
-    discounted_price: null,
+    discounted_price: 155,
     in_cart: true,
     quantity: 0
   },
@@ -51,7 +51,7 @@ const products = [
     price: 180,
     size: "L",
     color: "Orange",
-    discounted_price: null,
+    discounted_price: 200,
     in_cart: false,
     quantity: 0
   },
@@ -65,7 +65,7 @@ const products = [
     price: 180,
     size: "M",
     color: "Orange",
-    discounted_price: null,
+    discounted_price: 190,
     in_cart: false,
     quantity: 0
   },
@@ -79,7 +79,7 @@ const products = [
     price: 145,
     size: "34",
     color: "Denim",
-    discounted_price: null,
+    discounted_price: 160,
     in_cart: false,
     quantity: 0
   },
@@ -121,7 +121,7 @@ const products = [
     price: 80,
     size: "L",
     color: "Magenta",
-    discounted_price: null,
+    discounted_price: 100,
     in_cart: false,
     quantity: 0
   },
@@ -131,16 +131,3 @@ export const getProduct = () => {
   return products;
 };
 
-const cartProduct = [
-  {
-    name: "",
-    size: "",
-    color: "",
-    price: '',
-    quantity: 0,
-  },
-];
-
-export const getCartProduct = ()=>{
-  return cartProduct;
-}

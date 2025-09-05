@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 const ProductCard = ({ products }) => {
   const { cartData, setCartData } = useContext(NewProduct);
+  console.log(cartData);
 
   const handleAddToCart = (product) => {
     const addProduct = cartData.find((item) => item.id === product.id);
@@ -23,7 +24,15 @@ const ProductCard = ({ products }) => {
       });
     }
   };
-  
+
+  // Calculate remaining stock for a product
+  const getRemainingStock = (product) => {
+    const cartItem = cartData.find((item) => item.id === product.id);
+    if (cartItem) {
+      return product.stock - cartItem.quantity;
+    }
+    return product.stock;
+  };
 
   return (
     <div>
@@ -31,7 +40,7 @@ const ProductCard = ({ products }) => {
         {/* Product */}
         {products.map((product) => {
           const isInCart = cartData.find((item) => item.id === product.id);
-
+          const remainingStock = getRemainingStock(product);
           return (
             <div
               key={product.id}
@@ -54,23 +63,33 @@ const ProductCard = ({ products }) => {
                     </span>
                   </div>
                   <span className="text-xs text-gray-700">
-                    ({product.stock}
+                    ({remainingStock}
                     pcs left)
                   </span>
                 </div>
                 <div className="flex items-center">
                   <p className="font-bold">${product.price}</p>
                   <p className="text-gray-400 line-through ml-2">
-                    {product.discounted_price !== null &&
-                      `$${product.discounted_price}`}
+                    {`$${product.discounted_price}`}
                   </p>
                 </div>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className={`${isInCart ? "bg-red-800" : "bg-gray-800"} 
+                  disabled={remainingStock === 0 && !isInCart}
+                  className={`${
+                    isInCart
+                      ? "bg-red-800 hover:bg-red-900"
+                      : remainingStock === 0
+                      ? "bg-pink-500"
+                      : "bg-gray-800 hover:bg-gray-900"
+                  } 
                      cursor-pointer  w-full mt-2  py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all`}
                 >
-                  {isInCart ? "Remove from Cart" : "Add to Cart"}
+                  {isInCart
+                    ? "Remove from Cart"
+                    : remainingStock === 0
+                    ? "Out Of Stock"
+                    : "Add to Cart"}
                 </button>
               </div>
             </div>
