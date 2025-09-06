@@ -62,7 +62,7 @@ const ProductCard = ({ products }) => {
                     </span>
                   </div>
                   <span className="text-xs text-gray-700">
-                    ( {remainingStock}
+                    ( {remainingStock > 0 ? remainingStock : 0}
                     pcs left)
                   </span>
                 </div>
@@ -84,11 +84,7 @@ const ProductCard = ({ products }) => {
                   } 
                      cursor-pointer  w-full mt-2  py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all`}
                 >
-                  {isInCart
-                    ? "Remove from Cart"
-                    : remainingStock === 0
-                    ? "Out Of Stock"
-                    : "Add to Cart"}
+                  {isInCart ? "Remove from Cart" : "Add to Cart"}
                 </button>
               </div>
             </div>

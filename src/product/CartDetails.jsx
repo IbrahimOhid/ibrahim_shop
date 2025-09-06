@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { IncDecItem, NewProduct } from "../context";
+import { NewProduct } from "../context";
 import { getImgUrl } from "../utility/utilities";
 
 const CartDetails = () => {
@@ -8,7 +8,7 @@ const CartDetails = () => {
   const handleIncBtn = (productId) => {
     setCartData((prevCartData) =>
       prevCartData.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1} : item
+        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
       )
     );
   };
@@ -16,7 +16,7 @@ const CartDetails = () => {
   const handleDecBtn = (productId) => {
     setCartData((prevCartData) =>
       prevCartData.map((item) =>
-        item.id === productId && item.quantity > 0
+        item.id === productId && item.quantity > 1
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
@@ -77,9 +77,12 @@ const CartDetails = () => {
                       >
                         −
                       </button>
-                      <span className="text-sm">{product.quantity === product.stock ? alert('Out Of Stock'): product.quantity}</span>
+                      <span className="text-sm">{product.quantity}</span>
                       <button
                         onClick={() => handleIncBtn(product.id)}
+                        disabled={
+                          product.quantity === product.stock 
+                        }
                         className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
                       >
                         +
