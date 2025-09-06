@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 
 const ProductCard = ({ products }) => {
   const { cartData, setCartData } = useContext(NewProduct);
-  console.log(cartData);
 
   const handleAddToCart = (product) => {
     const addProduct = cartData.find((item) => item.id === product.id);
@@ -63,7 +62,7 @@ const ProductCard = ({ products }) => {
                     </span>
                   </div>
                   <span className="text-xs text-gray-700">
-                    ({remainingStock}
+                    ( {remainingStock}
                     pcs left)
                   </span>
                 </div>
@@ -75,12 +74,12 @@ const ProductCard = ({ products }) => {
                 </div>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  disabled={remainingStock === 0 && !isInCart}
+                  disabled={remainingStock === 0}
                   className={`${
                     isInCart
                       ? "bg-red-800 hover:bg-red-900"
                       : remainingStock === 0
-                      ? "bg-pink-500"
+                      ? "bg-gray-400 cursor-not-allowed"
                       : "bg-gray-800 hover:bg-gray-900"
                   } 
                      cursor-pointer  w-full mt-2  py-1 text-gray-100 rounded flex items-center justify-center active:translate-y-1 transition-all`}

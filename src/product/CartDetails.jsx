@@ -77,7 +77,7 @@ const CartDetails = () => {
                       >
                         −
                       </button>
-                      <span className="text-sm">{product.quantity}</span>
+                      <span className="text-sm">{product.quantity === product.stock ? alert('Out Of Stock'): product.quantity}</span>
                       <button
                         onClick={() => handleIncBtn(product.id)}
                         className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"

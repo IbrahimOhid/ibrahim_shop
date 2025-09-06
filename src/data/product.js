@@ -33,7 +33,7 @@ const products = [
     cover: "vertical-striped-shirt.png",
     rating: 4,
     max_rating: 5,
-    stock: 20,
+    stock: 0,
     price: 212,
     size: "S",
     color: "Red",
