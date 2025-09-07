@@ -11,7 +11,7 @@ const products = [
     color: "Green",
     discounted_price: 155,
     in_cart: true,
-     quantity: 1
+    quantity: 1,
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const products = [
     color: "Soft Blue",
     discounted_price: 260,
     in_cart: false,
-     quantity: 1
+    quantity: 1,
   },
   {
     id: 3,
@@ -39,13 +39,13 @@ const products = [
     color: "Red",
     discounted_price: 232,
     in_cart: false,
-     quantity: 1
+    quantity: 1,
   },
   {
     id: 4,
     name: "Polo with Tipping Details",
     cover: "polo-with-tipping-details.png",
-    rating: 1,
+    rating: 5,
     max_rating: 5,
     stock: 320,
     price: 180,
@@ -53,7 +53,7 @@ const products = [
     color: "Orange",
     discounted_price: 200,
     in_cart: false,
-     quantity: 1
+    quantity: 1,
   },
   {
     id: 5,
@@ -67,7 +67,7 @@ const products = [
     color: "Orange",
     discounted_price: 190,
     in_cart: false,
-     quantity: 1
+    quantity: 1,
   },
   {
     id: 6,
@@ -81,7 +81,7 @@ const products = [
     color: "Denim",
     discounted_price: 160,
     in_cart: false,
-     quantity: 1
+    quantity: 1,
   },
   {
     id: 7,
@@ -89,13 +89,13 @@ const products = [
     cover: "black-striped-tshirt.png",
     rating: 3,
     max_rating: 5,
-    stock: 420,
+    stock: 0,
     price: 120,
     size: "L",
     color: "Black",
     discounted_price: 160,
     in_cart: false,
-     quantity: 1
+    quantity: 1,
   },
   {
     id: 8,
@@ -109,7 +109,7 @@ const products = [
     color: "White",
     discounted_price: 160,
     in_cart: false,
-     quantity: 1
+    quantity: 1,
   },
   {
     id: 9,
@@ -123,11 +123,10 @@ const products = [
     color: "Magenta",
     discounted_price: 100,
     in_cart: false,
-     quantity: 1
+    quantity: 1,
   },
 ];
 
 export const getProduct = () => {
   return products;
 };
-

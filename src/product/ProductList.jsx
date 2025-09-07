@@ -14,7 +14,7 @@ const ProductList = () => {
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">Your Products</h2>
-            <SortProduct />
+            <SortProduct products={products} />
           </div>
           {/* Products Grid */}
           <ProductCard products={products} />

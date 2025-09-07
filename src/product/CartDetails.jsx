@@ -28,6 +28,18 @@ const CartDetails = () => {
       prevCartData.filter((item) => item.id !== productId)
     );
   };
+  // Calculate order summary
+  const subTotal = cartData.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
+
+  // 20% discount
+  const discount = subTotal * 0.2;
+  // deliveryFee
+  const deliveryFee = 15;
+  // Total Order Summary
+  const total = subTotal - discount + deliveryFee;
 
   return (
     <div className="lg:col-span-1">
@@ -80,9 +92,7 @@ const CartDetails = () => {
                       <span className="text-sm">{product.quantity}</span>
                       <button
                         onClick={() => handleIncBtn(product.id)}
-                        disabled={
-                          product.quantity === product.stock 
-                        }
+                        disabled={product.quantity === product.stock}
                         className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
                       >
                         +
@@ -101,19 +111,19 @@ const CartDetails = () => {
           <div className="space-y-2 mb-4">
             <div className="flex justify-between">
               <span className="text-gray-600">Subtotal</span>
-              <span className="font-medium">$565</span>
+              <span className="font-medium">${subTotal}</span>
             </div>
             <div className="flex justify-between text-red-500">
               <span>Discount (-20%)</span>
-              <span>-$113</span>
+              <span>-${discount}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Delivery Fee</span>
-              <span className="font-medium">$15</span>
+              <span className="font-medium">${deliveryFee}</span>
             </div>
             <div className="flex justify-between font-bold text-lg pt-2 border-t border-gray-200">
               <span>Total</span>
-              <span>$467</span>
+              <span>${total}</span>
             </div>
           </div>
           {/* Promo Code */}
@@ -122,9 +132,9 @@ const CartDetails = () => {
               <input
                 type="text"
                 placeholder="Add promo code"
-                className="w-full border border-gray-300 rounded-md py-2 px-3 text-sm"
+                className="w-full border border-gray-300 rounded-md py-2 px-7 text-sm"
               />
-              <span className="absolute left-3 top-2.5">
+              <span className="absolute left-3 top-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-4 w-4 text-gray-400"
