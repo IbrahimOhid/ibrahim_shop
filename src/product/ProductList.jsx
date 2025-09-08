@@ -3,9 +3,22 @@ import SortProduct from "./SortProduct";
 import ProductCard from "./ProductCard";
 import { getProduct } from "../data/product";
 import CartDetails from "./CartDetails";
+import { useState } from "react";
 
 const ProductList = () => {
-  const products = getProduct([]);
+  const [displayProduct, setDisplayProduct] = useState(getProduct([]));
+
+  const handleChange = (value) => {
+      if (value === "most-popular") {
+      const popularProduct = displayProduct.filter((item) => item.rating >= 3);
+      setDisplayProduct(popularProduct);
+    } else if (value === "newest") {
+      const newestProduct = displayProduct.filter((item) => item.rating <= 3);
+      setDisplayProduct(newestProduct);
+    }
+    
+
+  };
   
   return (
     <main className="container mx-auto px-4 md:px-8 py-8">
@@ -14,10 +27,10 @@ const ProductList = () => {
         <div className="lg:col-span-2">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold">Your Products</h2>
-            <SortProduct products={products} />
+            <SortProduct onSort={handleChange} />
           </div>
           {/* Products Grid */}
-          <ProductCard products={products} />
+          <ProductCard displayProduct={displayProduct} />
           
         </div>
         {/* Cart Section (1/3 width on large screens) */}
