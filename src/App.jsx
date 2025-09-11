@@ -14,7 +14,6 @@ function App() {
     <>
       <NewProduct.Provider value={{ cartData, setCartData }}>
         <Announcement />
-        <Header />
         <ProductList />
         <Newsletter />
         <Footer />
