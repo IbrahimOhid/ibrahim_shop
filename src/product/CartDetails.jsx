@@ -3,33 +3,30 @@ import { NewProduct } from "../context";
 import { getImgUrl } from "../utility/utilities";
 
 const CartDetails = () => {
-  const { cartData, setCartData } = useContext(NewProduct);
+  const { state, dispatch } = useContext(NewProduct);
   // Handle Increment Function
-  const handleIncBtn = (productId) => {
-    setCartData((prevCartData) =>
-      prevCartData.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+  const handleIncBtn = (product) => {
+  dispatch({
+    type: 'INCREMENT',
+    payload: product
+  })
   };
-  // Handle Decrement Function
-  const handleDecBtn = (productId) => {
-    setCartData((prevCartData) =>
-      prevCartData.map((item) =>
-        item.id === productId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
+  // Handle Decrement Function 
+  const handleDecBtn = (product) => {
+    dispatch({
+      type: 'DECREMENT',
+      payload: product
+    })
   };
   // Handle Remove Cart Function
-  const handleRemoveCart = (productId) => {
-    setCartData((prevCartData) =>
-      prevCartData.filter((item) => item.id !== productId)
-    );
+  const handleRemoveCart = (product) => {
+    dispatch({
+      type: 'REMOVE_FORM_CART',
+      payload: product
+    })
   };
   // Calculate order summary
-  const subTotal = cartData.reduce(
+  const subTotal = state.cartData.reduce(
     (total, product) => total + product.price * product.quantity,
     0
   );
@@ -46,7 +43,7 @@ const CartDetails = () => {
       <div className="bg-white rounded-lg p-6 border border-gray-200">
         <h2 className="text-2xl font-bold mb-6">YOUR CART</h2>
         {/* Cart Item */}
-        {cartData.length === 0 ? (
+        {state.cartData.length === 0 ? (
           <div className="border border-gray-400 py-5 rounded-xl">
             <h1 className="text-red-500 text-center mb-5 font-semibold text-2xl">
               Your Cart is Empty !
@@ -54,7 +51,7 @@ const CartDetails = () => {
           </div>
         ) : (
           <div>
-            {cartData.map((product) => (
+            {state.cartData.map((product) => (
               <div
                 key={product.id}
                 className="flex items-start space-x-4 pb-4 border-b border-gray-200 mb-4"
@@ -70,7 +67,7 @@ const CartDetails = () => {
                   <div className="flex justify-between">
                     <h3 className="font-medium">{product.name}</h3>
                     <button
-                      onClick={() => handleRemoveCart(product.id)}
+                      onClick={() => handleRemoveCart(product)}
                       className="text-red-500 text-sm cursor-pointer"
                     >
                       ×
@@ -84,14 +81,14 @@ const CartDetails = () => {
                     <p className="font-bold">${product.price}</p>
                     <div className="flex items-center space-x-2">
                       <button
-                        onClick={() => handleDecBtn(product.id)}
+                        onClick={() => handleDecBtn(product)}
                         className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
                       >
                         −
                       </button>
                       <span className="text-sm">{product.quantity}</span>
                       <button
-                        onClick={() => handleIncBtn(product.id)}
+                        onClick={() => handleIncBtn(product)}
                         disabled={product.quantity === product.stock}
                         className="w-6 h-6 bg-gray-100 rounded flex items-center justify-center cursor-pointer"
                       >

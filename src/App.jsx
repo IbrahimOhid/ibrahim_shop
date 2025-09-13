@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import Announcement from "./Announcement";
 import "./App.css";
 import { NewProduct } from "./context";
@@ -7,12 +7,13 @@ import Header from "./Header";
 import Newsletter from "./Newsletter";
 import ProductList from "./product/ProductList";
 import { ToastContainer } from "react-toastify";
+import { cartReducer, initialValue } from "./reducers/CartReducer";
 
 function App() {
-  const [cartData, setCartData] = useState([]);
+  const [state, dispatch] = useReducer(cartReducer, initialValue);
   return (
     <>
-      <NewProduct.Provider value={{ cartData, setCartData }}>
+      <NewProduct.Provider value={{ state, dispatch }}>
         <Announcement />
         <ProductList />
         <Newsletter />

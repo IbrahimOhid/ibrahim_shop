@@ -5,13 +5,18 @@ import { NewProduct } from "../context";
 import { toast } from "react-toastify";
 
 const ProductCard = ({ displayProduct }) => {
-  const { cartData, setCartData } = useContext(NewProduct);
+  const { state, dispatch } = useContext(NewProduct);
 
   const handleAddToCart = (product) => {
-    const addProduct = cartData.find((item) => item.id === product.id);
+    const addProduct = state.cartData.find((item) => item.id === product.id);
 
     if (!addProduct) {
-      setCartData([...cartData, product]);
+      dispatch({
+        type: 'ADD_TO_CART',
+        payload: {
+          ...product
+        }
+      });
       toast.success("Product Added Successfully", {
         position: "bottom-right",
         autoClose: 2000,
@@ -26,7 +31,7 @@ const ProductCard = ({ displayProduct }) => {
 
   // Calculate remaining stock for a product
   const getRemainingStock = (product) => {
-    const cartItem = cartData.find((item) => item.id === product.id);
+    const cartItem = state.cartData.find((item) => item.id === product.id);
     if (cartItem) {
       return product.stock - cartItem.quantity;
     }
@@ -58,7 +63,7 @@ const ProductCard = ({ displayProduct }) => {
         <div className="product-grid">
           {/* Product */}
           {displayProduct.map((product) => {
-            const isInCart = cartData.find((item) => item.id === product.id);
+            const isInCart = state.cartData.find((item) => item.id === product.id);
             const remainingStock = getRemainingStock(product);
             return (
               <div
